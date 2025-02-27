@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::view("/", "home");
+Route::view("/welcome", "welcome");
+Route::get('/index', [App\Http\Controllers\Controller::class, 'index'])->name('index');

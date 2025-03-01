@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 class Controller
 {
-    public function index()
-    {
-        return view('page');
-    }
+  public function index()
+  {
+    return view('categoria-main');
+  }
 }

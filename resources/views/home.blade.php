@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-12">
-        <h1 class="text-center">Bienvenido</h1>
+        <h1 class="text-center contenido">Bienvenido</h1>
     </div>
 </div>
 <div class="d-flex justify-content-center">

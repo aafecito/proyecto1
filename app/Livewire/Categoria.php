@@ -8,6 +8,10 @@ use Livewire\Attributes\On; // Importa On para los eventos
 class Categoria extends Component
 {
   public $categorias = [];
+  public $editando = []; // Array para rastrear qué filas están en edición
+  public $nuevosValores = []; // Guardar los valores editados
+
+
 
   public function mount()
   {
@@ -18,8 +22,30 @@ class Categoria extends Component
   public function actualizarLista()
   {
     $this->categorias = \App\Models\categoria::all();  // Actualizar la lista de categorías
-    $this->render();
   }
+
+  // Método para activar la edición de una fila específica
+  public function editar($categoriaId)
+  {
+    $this->editando[$categoriaId] = true;
+    $categoria = \App\Models\categoria::find($categoriaId);
+    $this->nuevosValores[$categoriaId] = [
+      'nombre' => $categoria->nombre,
+      'descripcion' => $categoria->descripcion,
+    ];
+  }
+
+  // Método para guardar los cambios
+  public function guardar($categoriaId)
+  {
+    $categoria = \App\Models\categoria::find($categoriaId);
+    $categoria->update($this->nuevosValores[$categoriaId]);
+
+    // Desactivar la edición
+    unset($this->editando[$categoriaId]);
+    $this->actualizarLista();
+  }
+
   public function render()
   {
     return view('livewire.categoria');  // La vista del componente Livewire

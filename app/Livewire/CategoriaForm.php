@@ -33,6 +33,7 @@ class CategoriaForm extends Component
     $this->descripcion = '';
     $this->codigo = '';
 
+    $this->dispatch('categoriaCreada'); // Emitir un evento para actualizar la lista de categorías
     // Opcional: Emitir un mensaje de éxito o redirigir
     session()->flash('message', 'Post creado exitosamente!');
   }

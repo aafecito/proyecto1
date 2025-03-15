@@ -11,12 +11,13 @@ return new class extends Migration
    */
   public function up(): void
   {
-    Schema::create('categorias', function (Blueprint $table) {
+    Schema::create('alimentos', function (Blueprint $table) {
       $table->id();
-      $table->string('nombre')->nullable(false)->comment('Nombre de la categoria');
+      $table->string('nombre')->nullable(false)->comment('Nombre del alimento');
+      $table->string('calorias')->nullable(false)->comment('Calorias del alimento');
       $table->string('descripcion')->nullable(true);
-      $table->string('codigo');
       $table->boolean('estado')->default(true);
+      $table->foreignId('id_categoria')->constrained('categorias')->onDelete('cascade')->onUpdate('cascade');
       $table->timestamps();
     });
   }
@@ -26,6 +27,6 @@ return new class extends Migration
    */
   public function down(): void
   {
-    Schema::dropIfExists('categorias');
+    Schema::dropIfExists('alimentos');
   }
 };

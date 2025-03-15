@@ -32,13 +32,9 @@
                   <td>{{ $categoria->descripcion }}</td>
                   <td>
                     <button wire:click="editar({{ $categoria->id }})" class="btn btn-primary">Editar</button>
+                    <button wire:click="eliminar({{ $categoria->id }})" class="btn btn-danger">Eliminar</button>
                   </td>
                 @endif
-                {{-- <td>{{ $categoria->nombre }}</td>
-                <td>{{ $categoria->descripcion }}</td>
-                <td>
-                  <button wire:click="editarCategoria({{ $categoria->id }})" class="btn btn-primary">Editar</button>
-                  <button wire:click="eliminarCategoria({{ $categoria->id }})" class="btn btn-danger">Eliminar</button> --}}
               </tr>
             @endforeach
           </tbody>

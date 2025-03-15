@@ -35,6 +35,12 @@ class Categoria extends Component
     ];
   }
 
+  public function eliminar($categoriaId)
+  {
+    \App\Models\categoria::destroy($categoriaId);
+    $this->actualizarLista();
+  }
+
   // Método para guardar los cambios
   public function guardar($categoriaId)
   {

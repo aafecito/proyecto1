@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\alimento;
+use App\Models\categoria;
 use Livewire\Attributes\On;
 
 class AlimentoGrid extends Component
@@ -11,9 +12,11 @@ class AlimentoGrid extends Component
   public $alimentos = [];
   public $editando = []; // Array para rastrear qué filas están en edición
   public $nuevosValores = []; // Guardar los valores editados
+  public $categorias = [];
+
   public function mount()
   {
-    $this->alimentos = alimento::all();
+    $this->cargarAlimentos();
   }
 
   #[On('alimentoCreado')]
@@ -24,7 +27,8 @@ class AlimentoGrid extends Component
 
   public function cargarAlimentos()
   {
-    $this->alimentos = alimento::where('estado', 1)->get();
+    $this->alimentos = alimento::with('categoria')->where('estado', 1)->get();
+    $this->categorias = categoria::all();
   }
 
   public function editar($alimentoId)

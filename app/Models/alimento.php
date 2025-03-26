@@ -13,4 +13,9 @@ class alimento extends Model
     'estado',
     'id_categoria',
   ];
+
+  public function categoria()
+  {
+    return $this->belongsTo(categoria::class, 'id_categoria');
+  }
 }

@@ -9,6 +9,7 @@
               <th>Nombre</th>
               <th>Calorías</th>
               <th>Descripción</th>
+              <th>Categoria</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -27,6 +28,14 @@
                     <input type="text" wire:model="nuevosValores.{{ $alimento->id }}.descripcion">
                   </td>
                   <td>
+                    <select wire:model="nuevosValores.{{ $alimento->id }}.id_categoria">
+                      <option value="">Seleccione una categoria</option>
+                      @foreach ($categorias as $categoria)
+                        <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+                      @endforeach
+                    </select>
+                  </td>
+                  <td>
                     <button wire:click="guardar({{ $alimento->id }})" class="btn btn-success">Guardar</button>
                   </td>
                 @else
@@ -34,6 +43,7 @@
                   <td>{{ $alimento->nombre }}</td>
                   <td>{{ $alimento->calorias }}</td>
                   <td>{{ $alimento->descripcion }}</td>
+                  <td>{{ $alimento->categoria->nombre }}</td>
                   <td>
                     <button wire:click="editar({{ $alimento->id }})" class="btn btn-primary">Editar</button>
                     <button wire:click="eliminar({{ $alimento->id }})" class="btn btn-danger">Eliminar</button>
